@@ -38,6 +38,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Ground
+    uniqueID: 1816463613
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Decor
+    uniqueID: 3212046737
+    locked: 0
+  - name: Live
+    uniqueID: 3824116879
+    locked: 0
+  - name: Top
+    uniqueID: 674506095
     locked: 0
