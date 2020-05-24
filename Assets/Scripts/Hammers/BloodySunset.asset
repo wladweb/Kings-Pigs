@@ -16,4 +16,6 @@ MonoBehaviour:
   _hammerName: Bloody Sunset
   _speed: 2
   _damage: 8
+  _length: 1.2
   _price: 120
+  _color: {r: 0.9056604, g: 0.10679956, b: 0.11446951, a: 1}

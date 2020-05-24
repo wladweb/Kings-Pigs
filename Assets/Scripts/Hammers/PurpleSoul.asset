@@ -16,4 +16,6 @@ MonoBehaviour:
   _hammerName: Purple Soul
   _speed: 1.5
   _damage: 6
+  _length: 1
   _price: 100
+  _color: {r: 0.7924528, g: 0.063545756, b: 0.6075595, a: 1}

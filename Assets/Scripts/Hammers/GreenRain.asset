@@ -10,10 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1c42fc3fbc369e54f8d05c5782f3a45b, type: 3}
-  m_Name: GreenRainbow
+  m_Name: GreenRain
   m_EditorClassIdentifier: 
-  _icon: {fileID: 21300000, guid: 819b07ec4956b4c4c822208df794ed80, type: 3}
-  _hammerName: Green Rainbow
+  _icon: {fileID: 21300000, guid: 29aedb3fce7cc4ff7bbf9f2c503f4424, type: 3}
+  _hammerName: Green Rain
   _speed: 0.8
   _damage: 3
+  _length: 0.6
   _price: 30
+  _color: {r: 0.024430392, g: 0.5754717, b: 0.049550746, a: 1}

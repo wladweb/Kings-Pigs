@@ -16,4 +16,6 @@ MonoBehaviour:
   _hammerName: Blue Fog
   _speed: 0.5
   _damage: 2
+  _length: 0.4
   _price: 10
+  _color: {r: 0.13363297, g: 0.44262254, b: 0.8584906, a: 1}
