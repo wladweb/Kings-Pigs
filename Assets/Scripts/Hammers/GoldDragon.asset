@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c42fc3fbc369e54f8d05c5782f3a45b, type: 3}
   m_Name: GoldDragon
   m_EditorClassIdentifier: 
-  _icon: {fileID: 21300000, guid: eb782caf2f1f06b49a8e22ddc4e102ea, type: 3}
+  _icon: {fileID: 21300000, guid: 8e42a364f9d2c432283fe87d1c7460ae, type: 3}
   _hammerName: Gold Dragon
-  _speed: 2
-  _damage: 8
-  _price: 120
+  _speed: 1
+  _damage: 5
+  _price: 70

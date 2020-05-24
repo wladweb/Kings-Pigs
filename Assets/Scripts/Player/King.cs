@@ -7,7 +7,6 @@ public class King : MonoBehaviour
     [SerializeField] private int _health;
     [SerializeField] private float _speed;
     [SerializeField] private float _jumpForce;
-
     [SerializeField] Hammer _hammer;
 
     private Animator _animator;
@@ -15,7 +14,7 @@ public class King : MonoBehaviour
     private bool _isLanded = true;
     private bool _isFacingRight = true;
     private float _currentDirection = 1;
-    private float _hitTime;
+    private float _timeAfterLastAttack;
 
     private void Awake()
     {
@@ -25,14 +24,20 @@ public class King : MonoBehaviour
 
     private void Update()
     {
+        Movement();
+        Attack();
+    }
+
+    private void Movement()
+    {
         float direction = Input.GetAxisRaw("Horizontal");
 
         if (direction != 0)
             _currentDirection = direction;
 
-        if (direction < 0 && _isFacingRight)
+        if (_currentDirection < 0 && _isFacingRight)
             Flip();
-        else if (direction > 0 && !_isFacingRight)
+        else if (_currentDirection > 0 && !_isFacingRight)
             Flip();
 
         _rigidBody.velocity = new Vector2(direction * _speed, _rigidBody.velocity.y);
@@ -42,11 +47,17 @@ public class King : MonoBehaviour
             _rigidBody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
         }
 
-        _hitTime += Time.deltaTime;
+        _animator.SetFloat("Speed", Mathf.Abs(_rigidBody.velocity.x));
+        _animator.SetFloat("VerticalSpeed", _rigidBody.velocity.y);
+    }
+
+    private void Attack()
+    {
+        _timeAfterLastAttack += Time.deltaTime;
 
         if (Input.GetButtonDown("Fire1"))
         {
-            if (_hitTime > (1 / _hammer.Speed))
+            if (_timeAfterLastAttack > (1 / _hammer.Speed))
             {
                 RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, transform.right * _currentDirection, 1);
 
@@ -57,12 +68,9 @@ public class King : MonoBehaviour
                 }
 
                 _animator.SetTrigger("Fire");
-                _hitTime = 0;
+                _timeAfterLastAttack = 0;
             }
         }
-
-        _animator.SetFloat("Speed", Mathf.Abs(_rigidBody.velocity.x));
-        _animator.SetFloat("VerticalSpeed", _rigidBody.velocity.y);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
