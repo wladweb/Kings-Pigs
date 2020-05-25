@@ -13,7 +13,9 @@ public class HammerView : MonoBehaviour
     [SerializeField] private Image _icon;
     [SerializeField] private Button _sellButton;
 
-    public event UnityAction SellButtonClicked;
+    private Hammer _hammer;
+
+    public event UnityAction<Hammer, HammerView> SellButtonClicked;
 
     public void Render(Hammer hammer)
     {
@@ -24,6 +26,8 @@ public class HammerView : MonoBehaviour
         _length.text = hammer.Length.ToString();
         _price.text = hammer.Price.ToString();
         _icon.sprite = hammer.Icon;
+
+        _hammer = hammer;
     }
 
     private void OnEnable()
@@ -38,6 +42,13 @@ public class HammerView : MonoBehaviour
 
     private void OnSellButtonClick()
     {
-        SellButtonClicked?.Invoke();
+        SellButtonClicked?.Invoke(_hammer, this);
+    }
+
+    public void Deactivate()
+    {
+        _sellButton.interactable = false;
+        _icon.sprite = _hammer.InactiveIcon;
+        _icon.transform.GetChild(0).gameObject.SetActive(true);
     }
 }

@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -15,6 +17,11 @@ public class King : MonoBehaviour
     private bool _isFacingRight = true;
     private float _currentDirection = 1;
     private float _timeAfterLastAttack;
+    private List<Hammer> _hammers = new List<Hammer>();
+
+    public int Diamonds { get; private set; } = 100;
+
+    public event UnityAction<int> DiamondsCountChanged;
 
     private void Awake()
     {
@@ -59,7 +66,7 @@ public class King : MonoBehaviour
         {
             if (_timeAfterLastAttack > (1 / _hammer.Speed))
             {
-                RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, transform.right * _currentDirection, 1);
+                RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, transform.right * _currentDirection, _hammer.Length);
 
                 foreach (RaycastHit2D hit in hits)
                 {
@@ -71,6 +78,15 @@ public class King : MonoBehaviour
                 _timeAfterLastAttack = 0;
             }
         }
+    }
+
+    public void BuyingHammer(Hammer hammer)
+    {
+        _hammers.Add(hammer);
+        _hammer = hammer;
+
+        Diamonds -= hammer.Price;
+        DiamondsCountChanged?.Invoke(Diamonds);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

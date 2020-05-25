@@ -4,6 +4,7 @@
 public class Hammer : ScriptableObject
 {
     [SerializeField] private Sprite _icon;
+    [SerializeField] private Sprite _inactiveIcon;
     [SerializeField] private string _hammerName;
     [SerializeField] private float _speed;
     [SerializeField] private int _damage;
@@ -12,6 +13,7 @@ public class Hammer : ScriptableObject
     [SerializeField] private Color _color;
 
     public Sprite Icon => _icon;
+    public Sprite InactiveIcon => _inactiveIcon;
     public string HammerName => _hammerName;
     public float Speed => _speed;
     public int Damage => _damage;
