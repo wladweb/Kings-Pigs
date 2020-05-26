@@ -24,7 +24,7 @@ public class King : MonoBehaviour
 
     public event UnityAction<int> DiamondsCountChanged;
     public event UnityAction<int> HealthChanged;
-    
+    public event UnityAction<Hammer> HammerChanged;
 
     private void Awake()
     {
