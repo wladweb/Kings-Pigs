@@ -20,7 +20,7 @@ public class King : MonoBehaviour
     private List<Hammer> _hammers = new List<Hammer>();
     private int _incomingHeartDamage;
 
-    public int Diamonds { get; private set; } = 100;
+    public int Diamonds { get; private set; } = 237;
 
     public event UnityAction<int> DiamondsCountChanged;
     public event UnityAction<int> HealthChanged;
@@ -30,6 +30,7 @@ public class King : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _rigidBody = GetComponent<Rigidbody2D>();
+        DiamondsCountChanged?.Invoke(Diamonds);
     }
 
     private void OnEnable()

@@ -11,7 +11,7 @@ public class Pig : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent<King>(out King king))
         {
-            king.ApplyDamage(3 00);
+            king.ApplyDamage(300);
         }
     }
 }
