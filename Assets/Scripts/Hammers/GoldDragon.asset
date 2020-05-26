@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: GoldDragon
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: 8e42a364f9d2c432283fe87d1c7460ae, type: 3}
+  _inactiveIcon: {fileID: 21300000, guid: 42fb52d23f5c140d0ab73b2326bf9013, type: 3}
   _hammerName: Gold Dragon
   _speed: 1
   _damage: 5

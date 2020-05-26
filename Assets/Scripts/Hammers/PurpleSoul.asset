@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: PurpleSoul
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: 9ebbc0be5b89749cbaf49dec4bf800b2, type: 3}
+  _inactiveIcon: {fileID: 21300000, guid: 8075f47f0b89f4869b1f59a54461d9a1, type: 3}
   _hammerName: Purple Soul
   _speed: 1.5
   _damage: 6

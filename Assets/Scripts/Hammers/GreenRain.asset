@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: GreenRain
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: 29aedb3fce7cc4ff7bbf9f2c503f4424, type: 3}
+  _inactiveIcon: {fileID: 21300000, guid: e9821421ca15f4403b7804129f321cf8, type: 3}
   _hammerName: Green Rain
   _speed: 0.8
   _damage: 3

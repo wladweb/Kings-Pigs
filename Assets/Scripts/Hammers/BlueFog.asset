@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: BlueFog
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: 55e52e425c7bf458fb62f86bdfefa256, type: 3}
+  _inactiveIcon: {fileID: 21300000, guid: ada559c2a0a4d43e2a4f2154ac3b2466, type: 3}
   _hammerName: Blue Fog
   _speed: 0.5
   _damage: 2

@@ -6,10 +6,10 @@ using System.Collections.Generic;
 [RequireComponent(typeof(Rigidbody2D))]
 public class King : MonoBehaviour
 {
-    [SerializeField] private int _health;
     [SerializeField] private float _speed;
     [SerializeField] private float _jumpForce;
     [SerializeField] Hammer _hammer;
+    [SerializeField] HealthBar _bar;
 
     private Animator _animator;
     private Rigidbody2D _rigidBody;
@@ -18,15 +18,28 @@ public class King : MonoBehaviour
     private float _currentDirection = 1;
     private float _timeAfterLastAttack;
     private List<Hammer> _hammers = new List<Hammer>();
+    private int _incomingHeartDamage;
 
     public int Diamonds { get; private set; } = 100;
 
     public event UnityAction<int> DiamondsCountChanged;
+    public event UnityAction<int> HealthChanged;
+    
 
     private void Awake()
     {
         _animator = GetComponent<Animator>();
         _rigidBody = GetComponent<Rigidbody2D>();
+    }
+
+    private void OnEnable()
+    {
+        _bar.KingDied += OnKingDied;
+    }
+
+    private void OnDisable()
+    {
+        _bar.KingDied -= OnKingDied;
     }
 
     private void Update()
@@ -80,6 +93,18 @@ public class King : MonoBehaviour
         }
     }
 
+    public void ApplyDamage(int percentOfOneHeart)
+    {
+        _incomingHeartDamage += percentOfOneHeart;
+        int heartsCountToDestroy = _incomingHeartDamage / 100;
+
+        if (heartsCountToDestroy >= 1)
+        {
+            _incomingHeartDamage %= 100;
+            HealthChanged?.Invoke(-heartsCountToDestroy);
+        }
+    }
+
     public void BuyingHammer(Hammer hammer)
     {
         _hammers.Add(hammer);
@@ -104,6 +129,11 @@ public class King : MonoBehaviour
         {
             _isLanded = false;
         }
+    }
+
+    private void OnKingDied()
+    {
+        Debug.Log("Died");
     }
 
     private void Flip()

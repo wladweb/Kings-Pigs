@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: BloodySunset
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: 9d5f90e11ae004c5aa975197185f1d75, type: 3}
+  _inactiveIcon: {fileID: 21300000, guid: 02dc722dee3c84c2fb6513ef06cd6e21, type: 3}
   _hammerName: Bloody Sunset
   _speed: 2
   _damage: 8
