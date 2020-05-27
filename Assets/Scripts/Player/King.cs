@@ -19,7 +19,24 @@ public class King : MonoBehaviour
     private float _timeAfterLastAttack;
     private List<Hammer> _hammers = new List<Hammer>();
     private int _incomingHeartDamage;
+    private int _hammerIndex;
 
+    public int HammerIndex 
+    {
+        get 
+        {
+            return _hammerIndex;
+        }
+        set 
+        {
+            if (value > _hammers.Count - 1)
+                _hammerIndex = 0;
+            else if (value < 0)
+                _hammerIndex = _hammers.Count - 1;
+            else
+                _hammerIndex = value;
+        }
+    }
     public int Diamonds { get; private set; } = 237;
 
     public event UnityAction<int> DiamondsCountChanged;
@@ -31,6 +48,9 @@ public class King : MonoBehaviour
         _animator = GetComponent<Animator>();
         _rigidBody = GetComponent<Rigidbody2D>();
         DiamondsCountChanged?.Invoke(Diamonds);
+
+        _hammers.Add(_hammer);
+        HammerChanged?.Invoke(_hammer);
     }
 
     private void OnEnable()
@@ -109,10 +129,9 @@ public class King : MonoBehaviour
     public void BuyingHammer(Hammer hammer)
     {
         _hammers.Add(hammer);
-        _hammer = hammer;
-
         Diamonds -= hammer.Price;
         DiamondsCountChanged?.Invoke(Diamonds);
+        HammerChanged?.Invoke(_hammer);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -135,6 +154,22 @@ public class King : MonoBehaviour
     private void OnKingDied()
     {
         Debug.Log("Died");
+    }
+
+    public void GetPreviousHammer() 
+    {
+        HammerIndex = _hammers.IndexOf(_hammer);
+        HammerIndex--;
+        _hammer = _hammers[HammerIndex];
+        HammerChanged?.Invoke(_hammer);
+    }
+
+    public void GetNextHamer()
+    {
+        HammerIndex = _hammers.IndexOf(_hammer);
+        HammerIndex++;
+        _hammer = _hammers[HammerIndex];
+        HammerChanged?.Invoke(_hammer);
     }
 
     private void Flip()

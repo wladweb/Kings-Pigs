@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c42fc3fbc369e54f8d05c5782f3a45b, type: 3}
   m_Name: Default
   m_EditorClassIdentifier: 
-  _icon: {fileID: 0}
-  _hammerName: default
+  _icon: {fileID: 21300000, guid: 00e767ed149fbe64db367ad5d7e331a4, type: 3}
+  _inactiveIcon: {fileID: 0}
+  _hammerName: Beginner
   _speed: 0.4
   _damage: 1
   _length: 0.3
