@@ -42,6 +42,7 @@ public class King : MonoBehaviour
     public event UnityAction<int> DiamondsCountChanged;
     public event UnityAction<int> HealthChanged;
     public event UnityAction<Hammer> HammerChanged;
+    public event UnityAction MoveThroughExitDoor;
 
     private void Awake()
     {
@@ -179,5 +180,11 @@ public class King : MonoBehaviour
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+    }
+
+    private void MoveOut()
+    {
+        gameObject.SetActive(false);
+        MoveThroughExitDoor?.Invoke();
     }
 }

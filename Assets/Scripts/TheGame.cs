@@ -7,11 +7,13 @@ public class TheGame : MonoBehaviour
     [SerializeField] private Transform _roomsHolder;
     [SerializeField] private Camera _camera;
     [SerializeField] private float _cameraSpeed;
-
+    [SerializeField] private King _king;
+ 
     private List<Room> _rooms = new List<Room>();
     private CameraMover _cameraMover;
     private Room _currentRoom;
-    private int _currnetRoomIndex;
+    private Room _previousRoom;
+    private int _currentRoomIndex;
 
     private void Awake()
     {
@@ -22,7 +24,24 @@ public class TheGame : MonoBehaviour
 
         _cameraMover = _camera.GetComponent<CameraMover>();
 
-        RoomChange(_currnetRoomIndex);
+        RoomChange(_currentRoomIndex);
+    }
+
+    private void OnEnable()
+    {
+        _king.MoveThroughExitDoor += EndLevelHandler;
+    }
+
+    private void OnDisable()
+    {
+        _king.MoveThroughExitDoor -= EndLevelHandler;
+    }
+
+    private void EndLevelHandler()
+    {
+        _previousRoom = _currentRoom;
+        _currentRoomIndex++;
+        RoomChange(_currentRoomIndex);
     }
 
     private void RoomChange(int roomIndex)
