@@ -45,6 +45,7 @@ public class King : MonoBehaviour
     public event UnityAction<int> HealthChanged;
     public event UnityAction<Hammer> HammerChanged;
     public event UnityAction MoveThroughExitDoor;
+    public event UnityAction KingDeadAnimationStop;
 
     private void Awake()
     {
@@ -157,7 +158,8 @@ public class King : MonoBehaviour
 
     private void OnKingDied()
     {
-        Debug.Log("Died");
+        _animator.Play("Dead");
+        LockControls = true;
     }
 
     public void GetPreviousHammer() 
@@ -189,5 +191,10 @@ public class King : MonoBehaviour
     {
         gameObject.SetActive(false);
         MoveThroughExitDoor?.Invoke();
+    }
+
+    private void DeadAnimationStop()
+    {
+        KingDeadAnimationStop?.Invoke();
     }
 }

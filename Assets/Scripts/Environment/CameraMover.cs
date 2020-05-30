@@ -39,7 +39,7 @@ public class CameraMover : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, target, _cameraSpeed * Time.deltaTime);
             yield return null;
         }
-
+        
         NextRoomReached?.Invoke();
         IsRoomActive = true;
     }

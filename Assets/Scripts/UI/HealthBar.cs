@@ -13,7 +13,6 @@ public class HealthBar : ObjectPool
     private void Awake()
     {
         Initialize(_template);
-        Reset();
     }
 
     private void OnEnable()
@@ -34,7 +33,7 @@ public class HealthBar : ObjectPool
         }
         else
         {
-            //to collect gems!!!!!
+            //collect hearts here!!!!!
             for (int i = 1; i <= heartsCount; i++)
             {
                 IncreaseHealth();
@@ -42,7 +41,7 @@ public class HealthBar : ObjectPool
         }
     }
 
-    private void Reset()
+    public void Reset()
     {
         StartCoroutine(CreateHearts());
     }

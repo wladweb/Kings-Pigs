@@ -7,6 +7,9 @@ public class TheGame : MonoBehaviour
     [SerializeField] private Transform _roomsHolder;
     [SerializeField] private CameraMover _cameraMover;
     [SerializeField] private King _king;
+    [SerializeField] private GameObject _winScreen; 
+    [SerializeField] private GameObject _deadScreen;
+    [SerializeField] private HealthBar _healthBar;
  
     private List<Room> _rooms = new List<Room>();
     private Room _currentRoom;
@@ -21,13 +24,18 @@ public class TheGame : MonoBehaviour
         {
             _rooms.Add(_roomsHolder.GetChild(i).GetComponent<Room>());
         }
+    }
 
+    public void StartGame()
+    {
         RoomChange(_currentRoomIndex);
+        _healthBar.Reset();
     }
 
     private void OnEnable()
     {
         _king.MoveThroughExitDoor += EndLevelHandler;
+        _king.KingDeadAnimationStop += OnPlayerDead;
         _cameraMover.NextRoomReached += OnNextRoomReached;
         PlayerWin += OnPlayerWin;
     }
@@ -35,6 +43,7 @@ public class TheGame : MonoBehaviour
     private void OnDisable()
     {
         _king.MoveThroughExitDoor -= EndLevelHandler;
+        _king.KingDeadAnimationStop -= OnPlayerDead;
         _cameraMover.NextRoomReached -= OnNextRoomReached;
         PlayerWin -= OnPlayerWin;
     }
@@ -72,6 +81,12 @@ public class TheGame : MonoBehaviour
 
     private void OnPlayerWin()
     {
-        Debug.Log("Player Win!");
+        _winScreen.SetActive(true);
+    }
+
+    private void OnPlayerDead()
+    {
+        _deadScreen.SetActive(true);
+        _king.gameObject.SetActive(false);
     }
 }
