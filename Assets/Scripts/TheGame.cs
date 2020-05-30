@@ -1,19 +1,19 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Events;
 
 public class TheGame : MonoBehaviour
 {
     [SerializeField] private Transform _roomsHolder;
-    [SerializeField] private Camera _camera;
-    [SerializeField] private float _cameraSpeed;
+    [SerializeField] private CameraMover _cameraMover;
     [SerializeField] private King _king;
  
     private List<Room> _rooms = new List<Room>();
-    private CameraMover _cameraMover;
     private Room _currentRoom;
     private Room _previousRoom;
     private int _currentRoomIndex;
+
+    public event UnityAction PlayerWin; 
 
     private void Awake()
     {
@@ -22,53 +22,56 @@ public class TheGame : MonoBehaviour
             _rooms.Add(_roomsHolder.GetChild(i).GetComponent<Room>());
         }
 
-        _cameraMover = _camera.GetComponent<CameraMover>();
-
         RoomChange(_currentRoomIndex);
     }
 
     private void OnEnable()
     {
         _king.MoveThroughExitDoor += EndLevelHandler;
+        _cameraMover.NextRoomReached += OnNextRoomReached;
+        PlayerWin += OnPlayerWin;
     }
 
     private void OnDisable()
     {
         _king.MoveThroughExitDoor -= EndLevelHandler;
+        _cameraMover.NextRoomReached -= OnNextRoomReached;
+        PlayerWin -= OnPlayerWin;
     }
 
     private void EndLevelHandler()
     {
         _previousRoom = _currentRoom;
-        _currentRoomIndex++;
-        RoomChange(_currentRoomIndex);
+
+        if (++_currentRoomIndex >= _rooms.Count)
+        {
+            PlayerWin?.Invoke();
+        }
+        else
+        {
+            RoomChange(_currentRoomIndex);
+        }
     }
 
     private void RoomChange(int roomIndex)
     {
-        _cameraMover.IsRoomActive = false;
         _currentRoom = _rooms[roomIndex];
-        
-        StartCoroutine(MoveCameraToNextRoom());
+        _cameraMover.SetBoundary(_currentRoom.GetBoundary());
+        _king.transform.position = _currentRoom.GetSpawnPointPosition();
+
+        StartCoroutine(_cameraMover.MoveCameraToNextRoom(_currentRoom));
     }
 
-    private IEnumerator MoveCameraToNextRoom()
+    private void OnNextRoomReached()
     {
-        Vector3 startLevelPosition = _currentRoom.GetLevelStartPosition();
-        Vector3 target = new Vector3(startLevelPosition.x, startLevelPosition.y, _camera.transform.position.z);
-        
-        while (_camera.transform.position != target)
-        {
-            _camera.transform.position = Vector3.MoveTowards(_camera.transform.position, target, _cameraSpeed * Time.deltaTime);
-            yield return null;
-        }
-        
-        ActivateRoom();
-    }
+        if (_previousRoom != null)
+            _previousRoom.gameObject.SetActive(false);
 
-    private void ActivateRoom()
-    {
         _currentRoom.StartRoom();
-        _cameraMover.IsRoomActive = true;
+    }
+
+    private void OnPlayerWin()
+    {
+        Debug.Log("Player Win!");
     }
 }

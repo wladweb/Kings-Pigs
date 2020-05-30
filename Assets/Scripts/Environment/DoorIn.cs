@@ -3,7 +3,7 @@
 [RequireComponent(typeof(Animator))]
 public class DoorIn : MonoBehaviour
 {
-    [SerializeField] private GameObject _king;
+    [SerializeField] private King _king;
 
     private Animator _animator;
 
@@ -20,6 +20,7 @@ public class DoorIn : MonoBehaviour
     private void PlaceKing()
     {
         _king.transform.position = transform.GetChild(0).transform.position;
-        _king.SetActive(true);
+        _king.gameObject.SetActive(true);
+        _king.LockControls = false;
     }
 }

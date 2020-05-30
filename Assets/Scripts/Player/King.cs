@@ -20,7 +20,9 @@ public class King : MonoBehaviour
     private List<Hammer> _hammers = new List<Hammer>();
     private int _incomingHeartDamage;
     private int _hammerIndex;
+    
 
+    public bool LockControls { get; set; }
     public int HammerIndex 
     {
         get 
@@ -66,7 +68,9 @@ public class King : MonoBehaviour
 
     private void Update()
     {
-        Movement();
+        if (!LockControls)
+            Movement();
+        
         Attack();
     }
 
@@ -132,7 +136,6 @@ public class King : MonoBehaviour
         _hammers.Add(hammer);
         Diamonds -= hammer.Price;
         DiamondsCountChanged?.Invoke(Diamonds);
-        HammerChanged?.Invoke(_hammer);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

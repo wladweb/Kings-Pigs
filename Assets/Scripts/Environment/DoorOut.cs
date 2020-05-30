@@ -1,12 +1,9 @@
 ﻿using UnityEngine;
-using UnityEngine.Events;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Animator))]
 public class DoorOut : MonoBehaviour
 {
-    [SerializeField] private King _king;
-
     private Animator _animator;
 
     private void Start()
@@ -19,6 +16,7 @@ public class DoorOut : MonoBehaviour
         if (collision.gameObject.TryGetComponent<King>(out King king))
         {
             _animator.Play("Closing");
+            king.LockControls = true;
             king.GetComponent<Animator>().Play("DoorIn");
         }
     }
