@@ -20,7 +20,8 @@ public class King : MonoBehaviour
     private List<Hammer> _hammers = new List<Hammer>();
     private int _incomingHeartDamage;
     private int _hammerIndex;
-    
+    private AudioSource _hitSound;
+
 
     public bool LockControls { get; set; }
     public int HammerIndex 
@@ -51,6 +52,7 @@ public class King : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _rigidBody = GetComponent<Rigidbody2D>();
+        _hitSound = GetComponent<AudioSource>();
         DiamondsCountChanged?.Invoke(Diamonds);
 
         _hammers.Add(_hammer);
@@ -107,6 +109,7 @@ public class King : MonoBehaviour
             if (_timeAfterLastAttack > (1 / _hammer.Speed))
             {
                 RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, transform.right * _currentDirection, _hammer.Length);
+                _hitSound.Play();
 
                 foreach (RaycastHit2D hit in hits)
                 {
@@ -122,6 +125,8 @@ public class King : MonoBehaviour
 
     public void ApplyDamage(int percentOfOneHeart)
     {
+        _animator.SetTrigger("Hit");
+
         _incomingHeartDamage += percentOfOneHeart;
         int heartsCountToDestroy = _incomingHeartDamage / 100;
 

@@ -89,4 +89,9 @@ public class TheGame : MonoBehaviour
         _deadScreen.SetActive(true);
         _king.gameObject.SetActive(false);
     }
+
+    public Transform GetKingTransform()
+    {
+        return _king.transform;
+    }
 }
