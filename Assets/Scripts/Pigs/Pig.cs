@@ -9,7 +9,7 @@ public class Pig : MonoBehaviour
 
     private Animator _animator;
 
-    public event UnityAction Died;
+    public event UnityAction<Pig> Died;
     public event UnityAction TookDamage;
 
     private void Awake()
@@ -19,13 +19,11 @@ public class Pig : MonoBehaviour
 
     private void OnEnable()
     {
-        Died += OnPigDied;
         TookDamage += DamageTakeAnimation;
     }
 
     private void OnDisable()
     {
-        Died -= OnPigDied;
         TookDamage -= DamageTakeAnimation;
     }
 
@@ -36,7 +34,10 @@ public class Pig : MonoBehaviour
         _health -= damage;
 
         if (_health <= 0)
-            Died?.Invoke();
+        {
+            _animator.SetBool("Dead", true);
+        }
+            
     }
 
     private void DamageTakeAnimation()
@@ -45,13 +46,9 @@ public class Pig : MonoBehaviour
         _blood.Play();
     }
 
-    private void OnPigDied()
-    {
-        _animator.SetBool("Dead", true);
-    }
-
     private void DestroyPig()
     {
+        Died?.Invoke(this);
         Destroy(gameObject);
     }
 }
