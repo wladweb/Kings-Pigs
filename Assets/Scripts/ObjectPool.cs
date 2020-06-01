@@ -30,4 +30,22 @@ public class ObjectPool : MonoBehaviour
         result = _pool.LastOrDefault(p => p.activeSelf == true);
         return result != null;
     }
+
+    protected void DisableObjectsAbroadScreen()
+    {
+        Camera camera = Camera.main;
+
+        foreach (GameObject obj in _pool)
+        {
+            if (obj.activeSelf)
+            {
+                Vector3 point = camera.WorldToViewportPoint(obj.transform.position);
+
+                if (point.y < -10)
+                {
+                    obj.SetActive(false);
+                }
+            }
+        }
+    }
 }

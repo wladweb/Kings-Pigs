@@ -21,6 +21,7 @@ public class DeadScreen : MonoBehaviour
 
     private void OnResumeButtonClick()
     {
+        Time.timeScale = 1;
         gameObject.SetActive(false);
         _game.StartGame();
     }

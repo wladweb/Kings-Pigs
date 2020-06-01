@@ -88,6 +88,7 @@ public class TheGame : MonoBehaviour
     {
         _deadScreen.SetActive(true);
         _king.gameObject.SetActive(false);
+        Time.timeScale = 0;
     }
 
     public Transform GetKingTransform()

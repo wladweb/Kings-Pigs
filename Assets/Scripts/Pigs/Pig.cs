@@ -5,7 +5,6 @@ public class Pig : MonoBehaviour
 {
     [SerializeField] int _health;
     [SerializeField] ParticleSystem _blood;
-    
 
     private Animator _animator;
 

@@ -163,7 +163,7 @@ public class King : MonoBehaviour
 
     private void OnKingDied()
     {
-        _animator.Play("Dead");
+        _animator.SetTrigger("Dead");
         LockControls = true;
     }
 
