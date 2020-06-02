@@ -137,6 +137,11 @@ public class King : MonoBehaviour
         }
     }
 
+    public void ApplyHeal(int heartsCount)
+    {
+        HealthChanged?.Invoke(heartsCount);
+    }
+
     public void BuyingHammer(Hammer hammer)
     {
         _hammers.Add(hammer);

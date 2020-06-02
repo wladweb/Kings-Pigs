@@ -13,14 +13,9 @@ public class Bombs : ObjectPool
     public GameObject GetBomb()
     {
         if (TryGetObject(out GameObject bomb))
-        {
-            bomb.GetComponent<Bomb>().SetBlow(_blows);
             return bomb;
-        }
         else
-        {
             return null;
-        }
     }
 
     private void Update()

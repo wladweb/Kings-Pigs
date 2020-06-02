@@ -33,7 +33,6 @@ public class HealthBar : ObjectPool
         }
         else
         {
-            //collect hearts here!!!!!
             for (int i = 1; i <= heartsCount; i++)
             {
                 IncreaseHealth();

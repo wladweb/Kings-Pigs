@@ -20,9 +20,7 @@ public class PigBomber : MonoBehaviour
             bomb.transform.position = transform.position;
             bomb.SetActive(true);
             bomb.GetComponent<Bomb>().Armed();
-
-            Rigidbody2D _rigidBody = bomb.GetComponent<Rigidbody2D>();
-            _rigidBody.AddForce(_throwDirection, ForceMode2D.Impulse);
+            bomb.GetComponent<Rigidbody2D>().AddForce(_throwDirection, ForceMode2D.Impulse);
         }
     }
 }

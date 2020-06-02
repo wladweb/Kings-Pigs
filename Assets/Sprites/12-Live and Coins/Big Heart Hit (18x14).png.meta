@@ -1,7 +1,19 @@
 fileFormatVersion: 2
 guid: df4d1d7964df16d4380d7b8c4fa21e34
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -4821771753769038510
+    second: Big Heart Hit (18x14)_0
+  - first:
+      213: 1340799443865892808
+    second: Big Heart Hit (18x14)_1
+  - first:
+      213: -1455751512869634678
+    second: Big Heart Hit (18x14)_0
+  - first:
+      213: 2237062250255784057
+    second: Big Heart Hit (18x14)_1
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -96,7 +108,49 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Big Heart Hit (18x14)_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8dfa2246b12ccbe0800000000000000
+      internalID: -1455751512869634678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big Heart Hit (18x14)_1
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 0
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9789eee9344ab0f10800000000000000
+      internalID: 2237062250255784057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

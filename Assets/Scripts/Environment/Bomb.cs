@@ -2,22 +2,24 @@
 
 public class Bomb : MonoBehaviour
 {
-    private GameObject _blow;
+    private Blows _blows;
+
+    private void OnEnable()
+    {
+        _blows = FindObjectOfType<Blows>();
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (_blow != null)
+        GameObject blow = _blows.GetBlow();
+
+        if (blow != null)
         {
-            _blow.transform.position = transform.position;
-            _blow.SetActive(true);
+            blow.transform.position = transform.position;
+            blow.SetActive(true);
         }
         
         gameObject.SetActive(false);
-    }
-
-    public void SetBlow(Blows blows)
-    {
-        _blow = blows.GetBlow();
     }
 
     public void Armed()
