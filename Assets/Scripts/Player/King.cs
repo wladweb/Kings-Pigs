@@ -149,6 +149,12 @@ public class King : MonoBehaviour
         DiamondsCountChanged?.Invoke(Diamonds);
     }
 
+    public void CollectDiamond(int diamondsCount)
+    {
+        Diamonds += diamondsCount;
+        DiamondsCountChanged?.Invoke(Diamonds);
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.TryGetComponent<Platform>(out Platform platform))

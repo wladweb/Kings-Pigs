@@ -3,16 +3,16 @@ using UnityEngine.Events;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(AudioSource))]
-public class HeartItem : MonoBehaviour
+public class DiamondItem : MonoBehaviour
 {
     private Animator _animator;
     private AudioSource _collectSound;
 
-    public event UnityAction HeartCollected;
+    public event UnityAction DiamondCollected;
 
     private void OnEnable()
     {
-        HeartCollected += OnHeartCollected;
+        DiamondCollected += OnDiamondCollect;
     }
 
     private void Start()
@@ -34,20 +34,20 @@ public class HeartItem : MonoBehaviour
 
         if (collision.gameObject.TryGetComponent<King>(out King king))
         {
-            king.ApplyHeal(1);
-            HeartCollected?.Invoke();
+            king.CollectDiamond(1);
+            DiamondCollected?.Invoke();
         }
     }
 
-    private void EraseHeart()
-    {
-        HeartCollected -= OnHeartCollected;
-        Destroy(gameObject);
-    }
-
-    private void OnHeartCollected()
+    private void OnDiamondCollect()
     {
         _animator.SetTrigger("Collected");
         _collectSound.Play();
+    }
+
+    private void EraseDiamond()
+    {
+        DiamondCollected -= OnDiamondCollect;
+        Destroy(gameObject);
     }
 }
