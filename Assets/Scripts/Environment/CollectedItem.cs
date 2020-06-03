@@ -12,7 +12,12 @@ public abstract class CollectedItem : MonoBehaviour
 
     private void OnEnable()
     {
-        ItemCollected += ItemCollect;
+        ItemCollected += OnItemCollect;
+    }
+
+    private void OnDisable()
+    {
+        ItemCollected -= OnItemCollect;
     }
 
     private void Start()
@@ -30,6 +35,7 @@ public abstract class CollectedItem : MonoBehaviour
         else
         {
             GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
 
         if (collision.gameObject.TryGetComponent<King>(out King king))
@@ -39,7 +45,7 @@ public abstract class CollectedItem : MonoBehaviour
         }
     }
 
-    private void ItemCollect()
+    private void OnItemCollect()
     {
         _animator.SetTrigger("Collected");
         _collectSound.Play();
@@ -47,8 +53,7 @@ public abstract class CollectedItem : MonoBehaviour
 
     private void EraseItem()
     {
-        ItemCollected -= ItemCollect;
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     protected abstract void ChargeItem(King king, int count);

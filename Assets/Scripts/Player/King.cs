@@ -115,6 +115,8 @@ public class King : MonoBehaviour
                 {
                     if (hit.transform.TryGetComponent<Pig>(out Pig pig))
                         pig.ApplyDamage(_hammer.Damage);
+                    else if (hit.transform.TryGetComponent<BoxItem>(out BoxItem boxItem))
+                        boxItem.ApplyDamage(transform.position.x);
                 }
 
                 _animator.SetTrigger("Fire");

@@ -19,6 +19,17 @@ public class ObjectPool : MonoBehaviour
         }
     }
 
+    protected void Initialize(GameObject[] _templates)
+    {
+        for (int i = 0; i < Capacity; i++)
+        {
+            int _templateIndex = Random.Range(0, _templates.Length);
+            GameObject spawned = Instantiate(_templates[_templateIndex], _container);
+            spawned.SetActive(false);
+            _pool.Add(spawned);
+        }
+    }
+
     protected bool TryGetObject(out GameObject result)
     {
         result = _pool.FirstOrDefault(p => p.activeSelf == false);
