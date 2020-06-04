@@ -1,21 +1,25 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(BoxDestroyable))]
 public class BoxItem : MonoBehaviour
 {
     [SerializeField] private int _hitsCountHealth;
     [SerializeField] private int _goodsCount;
     [SerializeField] private float _spread;
     [SerializeField] Vector2 _goodsPushDirection;
-    [SerializeField] private ParticleSystem _fog;
 
     private BoxItemHolder _boxHolder;
+    private BoxDestroyable _boxDestroyable;
+    private BoxCollider2D _collider;
 
     public event UnityAction<float> BoxDestroyed;
 
     private void Awake()
     {
         _boxHolder = transform.parent.GetComponent<BoxItemHolder>();
+        _boxDestroyable = GetComponent<BoxDestroyable>();
+        _collider = GetComponent<BoxCollider2D>();
     }
 
     private void OnEnable()
@@ -38,9 +42,9 @@ public class BoxItem : MonoBehaviour
 
     private void OnBoxDestroyed(float kingPositionX)
     {
-        ComponentsHandle();
         PushGoods(kingPositionX);
-        HideBox();
+        _collider.enabled = false;
+        _boxDestroyable.DestroyBox();
     }
 
     private void PushGoods(float kingPositionX)
@@ -69,18 +73,5 @@ public class BoxItem : MonoBehaviour
         directionY *= Random.Range(1.3f, 1.5f);
 
         return new Vector2(directionX * kingSide, directionY);
-    }
-
-    private void HideBox()
-    {
-        GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
-        Destroy(gameObject, 1f);
-    }
-
-    private void ComponentsHandle()
-    {
-        GetComponent<BoxCollider2D>().enabled = false;
-        GetComponent<AudioSource>().Play();
-        _fog.Play();
     }
 }

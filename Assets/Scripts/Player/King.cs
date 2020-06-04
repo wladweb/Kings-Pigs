@@ -159,7 +159,8 @@ public class King : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.TryGetComponent<Platform>(out Platform platform))
+        if (collision.transform.TryGetComponent<Platform>(out Platform platform) ||
+            collision.transform.TryGetComponent<RigidBox>(out RigidBox box))
         {
             _isLanded = true;
             _animator.SetTrigger("Landing");
