@@ -1,25 +1,14 @@
 ﻿using UnityEngine;
 
-public class Bombs : ObjectPool
+public class Bombs : ItemHolder
 {
     [SerializeField] private GameObject _bombTemplate;
-    [SerializeField] private Blows _blows;
 
-    private void Awake()
+    protected override GameObject Template 
     {
-        Initialize(_bombTemplate);
-    }
-
-    public GameObject GetBomb()
-    {
-        if (TryGetObject(out GameObject bomb))
-            return bomb;
-        else
-            return null;
-    }
-
-    private void Update()
-    {
-        DisableObjectsAbroadScreen();
+        get
+        {
+            return _bombTemplate;
+        }
     }
 }

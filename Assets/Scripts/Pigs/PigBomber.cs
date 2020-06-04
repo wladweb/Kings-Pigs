@@ -13,7 +13,7 @@ public class PigBomber : MonoBehaviour
 
     private void ThrowBomb()
     {
-        GameObject bomb =_bombs.GetBomb();
+        GameObject bomb =_bombs.GetItem();
         
         if (bomb != null)
         {

@@ -1,19 +1,14 @@
 ﻿using UnityEngine;
 
-public class Blows : ObjectPool
+public class Blows : ItemHolder
 {
     [SerializeField] private GameObject _blowTemplate;
 
-    private void Awake()
+    protected override GameObject Template
     {
-        Initialize(_blowTemplate);
-    }
-
-    public GameObject GetBlow()
-    {
-        if (TryGetObject(out GameObject blow))
-            return blow;
-        else
-            return null;
+        get
+        {
+            return _blowTemplate;
+        }
     }
 }

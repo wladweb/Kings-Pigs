@@ -1,16 +1,17 @@
 ﻿using UnityEngine;
 
-public class Bomb : MonoBehaviour
+public class CannonBall : MonoBehaviour
 {
     private Blows _blows;
 
-    private void OnEnable()
+    public void SetBlowsPool(Blows blows)
     {
-        _blows = FindObjectOfType<Blows>();
+        _blows = blows;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        gameObject.SetActive(false);
         GameObject blow = _blows.GetItem();
 
         if (blow != null)
@@ -18,12 +19,5 @@ public class Bomb : MonoBehaviour
             blow.transform.position = transform.position;
             blow.SetActive(true);
         }
-        
-        gameObject.SetActive(false);
-    }
-
-    public void Armed()
-    {
-        GetComponent<Animator>().SetTrigger("BombOn");
     }
 }
