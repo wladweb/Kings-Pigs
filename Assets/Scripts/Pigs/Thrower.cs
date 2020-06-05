@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
-public abstract class Thrower : MonoBehaviour
+public abstract class Thrower : Pig
 {
     [SerializeField] private float _secondsBetweenThrowing;
     [SerializeField] private Vector2 _throwDirection;
@@ -20,12 +20,15 @@ public abstract class Thrower : MonoBehaviour
 
     private void Update()
     {
-        _secondsAfterLastThrow += Time.deltaTime;
-
-        if (_secondsAfterLastThrow >= _secondsBetweenThrowing)
+        if (IsActive)
         {
-            _animator.SetTrigger("Throw");
-            _secondsAfterLastThrow = 0;
+            _secondsAfterLastThrow += Time.deltaTime;
+
+            if (_secondsAfterLastThrow >= _secondsBetweenThrowing)
+            {
+                _animator.SetTrigger("Throw");
+                _secondsAfterLastThrow = 0;
+            }
         }
     }
 

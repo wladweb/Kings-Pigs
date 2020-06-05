@@ -2,7 +2,7 @@
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
-public class PigWarrior : MonoBehaviour
+public class PigWarrior : Pig
 {
     [SerializeField] private float _leftConstraint;
     [SerializeField] private float _rightConstraint;
@@ -37,17 +37,20 @@ public class PigWarrior : MonoBehaviour
 
     private void Update()
     {
-        if (_currentState == WarriorState.Idle)
+        if (IsActive)
         {
-            GetPatrolDirection();
-        }
-        else if (_currentState == WarriorState.Attack)
-        {
-            GetPlayerDirection();
-        }
+            if (_currentState == WarriorState.Idle)
+            {
+                GetPatrolDirection();
+            }
+            else if (_currentState == WarriorState.Attack)
+            {
+                GetPlayerDirection();
+            }
 
-        if (_move)
-            Move(_currentDirection);
+            if (_move)
+                Move(_currentDirection);
+        }
     }
 
     private void GetPlayerDirection()
@@ -117,7 +120,7 @@ public class PigWarrior : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.TryGetComponent<Pig>(out Pig pig))
+        if (collision.collider.TryGetComponent<PigVulnerability>(out PigVulnerability pig))
         {
             Physics2D.IgnoreCollision(GetComponent<Collider2D>(), collision.collider); ; ;
         }

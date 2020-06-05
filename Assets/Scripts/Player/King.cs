@@ -113,7 +113,7 @@ public class King : MonoBehaviour
 
                 foreach (RaycastHit2D hit in hits)
                 {
-                    if (hit.transform.TryGetComponent<Pig>(out Pig pig))
+                    if (hit.transform.TryGetComponent<PigVulnerability>(out PigVulnerability pig))
                         pig.ApplyDamage(_hammer.Damage);
                     else if (hit.transform.TryGetComponent<BoxItem>(out BoxItem boxItem))
                         boxItem.ApplyDamage(transform.position.x);

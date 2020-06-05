@@ -6,16 +6,16 @@ public class Sounds : MonoBehaviour
     [SerializeField] private AudioSource _pigDie;
     [SerializeField] private AudioSource _exitRoom;
 
-    private Pig[] _warriors;
+    private PigVulnerability[] _warriors;
 
     private void Awake()
     {
-        _warriors = FindObjectsOfType<Pig>();
+        _warriors = FindObjectsOfType<PigVulnerability>();
     }
 
     private void OnEnable()
     {
-        foreach (Pig pig in _warriors)
+        foreach (PigVulnerability pig in _warriors)
         {
             pig.Died += OnPigDied;
         }
@@ -23,7 +23,7 @@ public class Sounds : MonoBehaviour
         _king.MoveThroughExitDoor += OnMoveThroughExitDoor;
     }
 
-    private void OnPigDied(Pig pig)
+    private void OnPigDied(PigVulnerability pig)
     {
         _pigDie.Play();
         pig.Died -= OnPigDied;

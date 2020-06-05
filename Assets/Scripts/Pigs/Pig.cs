@@ -1,53 +1,28 @@
 ﻿using UnityEngine;
-using UnityEngine.Events;
 
-public class Pig : MonoBehaviour
+public abstract class Pig : MonoBehaviour
 {
-    [SerializeField] int _health;
-    [SerializeField] ParticleSystem _blood;
+    private EnemiesHolder _enemiesHolder;
 
-    private Animator _animator;
-
-    public event UnityAction<Pig> Died;
-    public event UnityAction TookDamage;
+    protected bool IsActive;
 
     private void Awake()
     {
-        _animator = GetComponent<Animator>();
+        _enemiesHolder = transform.parent.GetComponent<EnemiesHolder>();
     }
 
     private void OnEnable()
     {
-        TookDamage += DamageTakeAnimation;
+        _enemiesHolder.RoomChangeStatus += OnRoomChangeStatus; 
     }
 
     private void OnDisable()
     {
-        TookDamage -= DamageTakeAnimation;
+        _enemiesHolder.RoomChangeStatus -= OnRoomChangeStatus;
     }
 
-    public void ApplyDamage(int damage)
+    private void OnRoomChangeStatus(bool roomStatus)
     {
-        TookDamage?.Invoke();
-
-        _health -= damage;
-
-        if (_health <= 0)
-        {
-            _animator.SetBool("Dead", true);
-        }
-            
-    }
-
-    private void DamageTakeAnimation()
-    {
-        _animator.SetTrigger("Hit");
-        _blood.Play();
-    }
-
-    private void DestroyPig()
-    {
-        Died?.Invoke(this);
-        Destroy(gameObject);
+        IsActive = roomStatus;
     }
 }

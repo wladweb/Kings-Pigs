@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
-public class PigCannoneer : MonoBehaviour
+public class PigCannoneer : Pig
 {
     [SerializeField] private Cannon _cannon;
     [SerializeField] float _secondsBetweenShoots;
@@ -16,12 +16,15 @@ public class PigCannoneer : MonoBehaviour
 
     private void Update()
     {
-        _timeFromLastShoot += Time.deltaTime;
-
-        if (_timeFromLastShoot >= _secondsBetweenShoots)
+        if (IsActive)
         {
-            Shoot();
-            _timeFromLastShoot = 0;
+            _timeFromLastShoot += Time.deltaTime;
+
+            if (_timeFromLastShoot >= _secondsBetweenShoots)
+            {
+                Shoot();
+                _timeFromLastShoot = 0;
+            }
         }
     }
 
