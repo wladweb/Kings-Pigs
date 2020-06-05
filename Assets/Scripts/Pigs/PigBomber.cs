@@ -1,26 +1,9 @@
 ﻿using UnityEngine;
 
-public class PigBomber : MonoBehaviour
+public class PigBomber : Thrower
 {
-    [SerializeField] private Vector2 _throwDirection;
-
-    private Bombs _bombs;
-
-    private void Awake()
+    protected override void FindItemPool()
     {
-        _bombs = FindObjectOfType<Bombs>();
-    }
-
-    private void ThrowBomb()
-    {
-        GameObject bomb =_bombs.GetItem();
-        
-        if (bomb != null)
-        {
-            bomb.transform.position = transform.position;
-            bomb.SetActive(true);
-            bomb.GetComponent<Bomb>().Armed();
-            bomb.GetComponent<Rigidbody2D>().AddForce(_throwDirection, ForceMode2D.Impulse);
-        }
+        Items = FindObjectOfType<Bombs>();
     }
 }
