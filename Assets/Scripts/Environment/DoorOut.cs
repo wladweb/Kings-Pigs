@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Animator))]
 public class DoorOut : MonoBehaviour
 {
     private Animator _animator;
+
+    public event UnityAction KingLeftRoom;
 
     private void Start()
     {
@@ -18,6 +21,7 @@ public class DoorOut : MonoBehaviour
             _animator.Play("Closing");
             king.LockControls = true;
             king.GetComponent<Animator>().Play("DoorIn");
+            KingLeftRoom?.Invoke();
         }
     }
 }

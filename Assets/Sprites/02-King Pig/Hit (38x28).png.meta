@@ -1,7 +1,13 @@
 fileFormatVersion: 2
 guid: 94d6f3e2252dd6d4d825ef52cfebfd53
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -7982368223760686067
+    second: Hit (38x28)_0
+  - first:
+      213: -8445486696707508763
+    second: Hit (38x28)_1
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -96,7 +102,49 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Hit (38x28)_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 38
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d04e064946ee83190800000000000000
+      internalID: -7982368223760686067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hit (38x28)_1
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 0
+        width: 38
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e5367f689a9bca80800000000000000
+      internalID: -8445486696707508763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

@@ -9,11 +9,13 @@ public class Room : MonoBehaviour
     private void OnEnable()
     {
         _doorIn.KingEnteredRoom += OnKingEnteredRoom;
+        _doorOut.KingLeftRoom += OnKingLeftRoom;
     }
 
     private void OnDisable()
     {
         _doorIn.KingEnteredRoom -= OnKingEnteredRoom;
+        _doorOut.KingLeftRoom -= OnKingLeftRoom;
     }
 
     public void StartRoom()
@@ -39,5 +41,10 @@ public class Room : MonoBehaviour
     private void OnKingEnteredRoom()
     {
         _enemies.ChangeEnemiesState(true);
+    }
+
+    private void OnKingLeftRoom()
+    {
+        _enemies.ChangeEnemiesState(false);
     }
 }

@@ -1,7 +1,19 @@
 fileFormatVersion: 2
 guid: f83c4fac62002d249812de50dc45ac3a
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -3986534151507454092
+    second: Dead (38x28)_0
+  - first:
+      213: -3139996617160341511
+    second: Dead (38x28)_1
+  - first:
+      213: 1401772850646523729
+    second: Dead (38x28)_2
+  - first:
+      213: 8067800279291937271
+    second: Dead (38x28)_3
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -96,7 +108,91 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Dead (38x28)_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 38
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4775f6e8f4cfca8c0800000000000000
+      internalID: -3986534151507454092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dead (38x28)_1
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 0
+        width: 38
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f7ca3e86bd7c64d0800000000000000
+      internalID: -3139996617160341511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dead (38x28)_2
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 0
+        width: 38
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15f92921bf8147310800000000000000
+      internalID: 1401772850646523729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dead (38x28)_3
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 0
+        width: 38
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f14ef5eb9596ff60800000000000000
+      internalID: 8067800279291937271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

@@ -120,9 +120,9 @@ public class PigWarrior : Pig
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.TryGetComponent<PigVulnerability>(out PigVulnerability pig))
+        if (collision.collider.TryGetComponent<PigWarrior>(out PigWarrior pig))
         {
-            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), collision.collider); ; ;
+            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), collision.collider);
         }
     }
 
