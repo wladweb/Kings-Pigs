@@ -51,7 +51,7 @@ public class TheGame : MonoBehaviour
     private void EndLevelHandler()
     {
         _previousRoom = _currentRoom;
-
+        
         if (++_currentRoomIndex >= _rooms.Count)
         {
             PlayerWin?.Invoke();
