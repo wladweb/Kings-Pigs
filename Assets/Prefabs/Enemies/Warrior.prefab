@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 1348560468}
   - component: {fileID: 1348560469}
   - component: {fileID: 6085701608448859255}
+  - component: {fileID: 8659386842092070226}
   m_Layer: 0
   m_Name: Warrior
   m_TagString: Untagged
@@ -36,7 +37,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.95, y: -3.5707407, z: 6.9414062}
   m_LocalScale: {x: 1.286, y: 1.286, z: 1.286}
-  m_Children: []
+  m_Children:
+  - {fileID: 8617637248680813611}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5032,3 +5034,47 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8659386842092070226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 880307399677518030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1538fa4d395e984b9ebdef577c4abaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bubblePoint: {fileID: 8617637248680813611}
+  _secondsBetweenBubles: 2
+--- !u!1 &6584586471977963279
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8617637248680813611}
+  m_Layer: 0
+  m_Name: BubblePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8617637248680813611
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6584586471977963279}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.099, y: 0.39, z: 0}
+  m_LocalScale: {x: 0.77760494, y: 0.77760494, z: 0.77760494}
+  m_Children: []
+  m_Father: {fileID: 880307399677518027}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

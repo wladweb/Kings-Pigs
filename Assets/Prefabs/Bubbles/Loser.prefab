@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 384672707607178946}
   - component: {fileID: 552525909602008145}
   - component: {fileID: 2012634088258682123}
+  - component: {fileID: 440660675620898206}
   m_Layer: 0
   m_Name: Loser
   m_TagString: Untagged
@@ -102,3 +103,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &440660675620898206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806139221021227996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da5ea00a20734894481d25f163069264, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
