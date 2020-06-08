@@ -31,7 +31,8 @@ public class RoomBoundary : MonoBehaviour
     {
         _leftConstraint = transform.position.x - _colliderHalfWidth + _cameraHalfWidth;
         _rightConstraint = transform.position.x + _colliderHalfWidth - _cameraHalfWidth;
-
+        Debug.Log(transform.position.y);
+        Debug.Log(transform.position.x);
         _topConstraint = transform.position.y - _colliderHalfHeight + _cameraHalfHeight;
         _bottomtConstraint = transform.position.y + _colliderHalfHeight - _cameraHalfHeight;
     }
