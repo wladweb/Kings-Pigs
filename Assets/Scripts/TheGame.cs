@@ -35,7 +35,7 @@ public class TheGame : MonoBehaviour
     private void OnEnable()
     {
         _king.MoveThroughExitDoor += EndLevelHandler;
-        _king.KingDeadAnimationStop += OnPlayerDead;
+        _king.StopKingDeathAnimation += OnPlayerDead;
         _cameraMover.NextRoomReached += OnNextRoomReached;
         PlayerWin += OnPlayerWin;
     }
@@ -43,7 +43,7 @@ public class TheGame : MonoBehaviour
     private void OnDisable()
     {
         _king.MoveThroughExitDoor -= EndLevelHandler;
-        _king.KingDeadAnimationStop -= OnPlayerDead;
+        _king.StopKingDeathAnimation -= OnPlayerDead;
         _cameraMover.NextRoomReached -= OnNextRoomReached;
         PlayerWin -= OnPlayerWin;
     }

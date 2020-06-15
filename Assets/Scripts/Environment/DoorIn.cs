@@ -24,7 +24,7 @@ public class DoorIn : MonoBehaviour
     {
         _king.transform.position = transform.GetChild(0).transform.position;
         _king.gameObject.SetActive(true);
-        _king.LockControls = false;
+        _king.LockControls(false);
         KingEnteredRoom?.Invoke();
     }
 }

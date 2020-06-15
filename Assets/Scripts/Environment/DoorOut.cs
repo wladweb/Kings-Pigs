@@ -21,7 +21,7 @@ public class DoorOut : MonoBehaviour
         if (collision.gameObject.TryGetComponent<King>(out King king))
         {
             _animator.Play("Closing");
-            king.LockControls = true;
+            king.LockControls(true);
             king.GetComponent<Animator>().Play("DoorIn");
             _sound.Play();
             KingLeftRoom?.Invoke();

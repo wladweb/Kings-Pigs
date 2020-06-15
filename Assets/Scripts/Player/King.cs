@@ -21,10 +21,8 @@ public class King : MonoBehaviour
     private int _incomingHeartDamage;
     private int _hammerIndex;
     private AudioSource _hitSound;
-
-
-    public bool LockControls { get; set; }
-    public int HammerIndex 
+    
+    private int HammerIndex 
     {
         get 
         {
@@ -40,13 +38,14 @@ public class King : MonoBehaviour
                 _hammerIndex = value;
         }
     }
+    public bool LockKingMovement { get; private set; }
     public int Diamonds { get; private set; } = 237;
 
     public event UnityAction<int> DiamondsCountChanged;
     public event UnityAction<int> HealthChanged;
     public event UnityAction<Hammer> HammerChanged;
     public event UnityAction MoveThroughExitDoor;
-    public event UnityAction KingDeadAnimationStop;
+    public event UnityAction StopKingDeathAnimation;
 
     private void Awake()
     {
@@ -71,7 +70,7 @@ public class King : MonoBehaviour
 
     private void Update()
     {
-        if (!LockControls)
+        if (!LockKingMovement)
             Movement();
         
         Attack();
@@ -139,7 +138,7 @@ public class King : MonoBehaviour
         }
     }
 
-    public void ApplyHeal(int heartsCount)
+    public void CollectHeart(int heartsCount)
     {
         HealthChanged?.Invoke(heartsCount);
     }
@@ -178,7 +177,7 @@ public class King : MonoBehaviour
     private void OnKingDied()
     {
         _animator.SetTrigger("Dead");
-        LockControls = true;
+        LockKingMovement = true;
     }
 
     public void GetPreviousHammer() 
@@ -212,8 +211,13 @@ public class King : MonoBehaviour
         MoveThroughExitDoor?.Invoke();
     }
 
-    private void DeadAnimationStop()
+    private void StopDeadAnimation()
     {
-        KingDeadAnimationStop?.Invoke();
+        StopKingDeathAnimation?.Invoke();
+    }
+
+    public void LockControls(bool lockKingMovement)
+    {
+        LockKingMovement = lockKingMovement;
     }
 }
